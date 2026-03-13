@@ -7,17 +7,13 @@ def _sigmoid(z):
 def train_logistic_regression(X, y, lr=0.1, steps=1000):
 
     W = np.random.randn(X.shape[1])
-    print(W)
-    n = len(X)
     bias = 0
-    b=0
-    
+    n = len(X)
     for i in range(steps):
         y_pred = _sigmoid(X @ W + bias)
-        grad_W = (1/n)* X.T @ (y_pred - y)
-        grad_b = np.mean(y_pred - y)
-        W -= lr * grad_W
-        bias -= lr * grad_b
+        gradW = (1/n)* X.T @ (y_pred-y)
+        gradB = np.mean(y_pred-y)
+        W -= lr * gradW
+        bias -=lr*gradB
 
     return W, bias
-        
